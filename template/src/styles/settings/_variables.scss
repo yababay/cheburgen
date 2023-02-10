@@ -1,0 +1,52 @@
+@use 'sass:math';
+@use 'sass:list';
+@use 'sass:map';
+
+$type-base: 16px;
+$type-scale: 1.2;
+$type-steps: "sm", "base", "md", "lg", "xl", "xxl", "xxxl";
+$type-base-min: 16px;
+$type-base-max: 19px;
+$type-scale-min: 1.2;
+$type-scale-max: 1.333;
+$type-base-index: list.index($type-steps, "base");
+$basic-black: #343434;
+
+$media-breakpoints: (
+  small: 320px,
+  mobile: 480px,
+  tablet: 768px,
+  desktop: 1024px,
+  large: 1200px
+);
+
+$default-min-bp: map.get($media-breakpoints, "mobile");
+$default-max-bp: map.get($media-breakpoints, "large");
+$burger-breakpoint: map.get($media-breakpoints,  "mobile");
+
+$line-height-ratio: 1.42857;
+$icon-width-ratio:  .65;
+$icon-height-ratio: .5;
+
+:root {
+    --small-breakpoint: #{map.get($media-breakpoints,   "small")};
+    --mobile-breakpoint: #{map.get($media-breakpoints,  "mobile")};
+    --tablet-breakpoint: #{map.get($media-breakpoints,  "tablet")};
+    --desktop-breakpoint: #{map.get($media-breakpoints, "desktop")};
+    --large-breakpoint: #{map.get($media-breakpoints,   "large")};
+    
+    @for $i from 1 through length($type-steps) {
+      $step: list.nth($type-steps, $i);
+      $power: $i - $type-base-index;
+      $min: $type-base-min * math.pow($type-scale-min, $power);
+      $max: $type-base-max * math.pow($type-scale-max, $power);
+      --font-size-#{$step}: #{clamped($min, $max)};
+      --line-height-#{$step}: calc(var(--font-size-#{$step})   * #{$line-height-ratio});
+      --icon-width-#{$step}:  calc(var(--line-height-#{$step}) * #{$icon-width-ratio});
+      --icon-height-#{$step}: calc(var(--line-height-#{$step}) * #{$icon-height-ratio});
+    }
+
+    --header-height:    var(--line-height-lg);
+    --footer-height:    var(--line-height-base);
+    --main-min-height:  calc(100vh - var(--header-height) - var(--footer-height));
+}

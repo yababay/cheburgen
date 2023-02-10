@@ -1,0 +1,14 @@
+@use 'sass:list';
+
+@mixin text-size ($size) {
+    font-size: var(--font-size-#{$size});
+    line-height: var(--line-height-#{$size});
+}
+
+@for $i from 1 through length($type-steps) {
+    $step: list.nth($type-steps, $i);
+    .text-#{$step} {
+        @include text-size(#{$step})
+    }
+}
+

@@ -1,0 +1,20 @@
+html, body, main, header, footer {
+    max-width: 100vw;
+    margin:  0;
+    padding: 0;
+    border:  0;
+}
+
+main {
+    min-height: var(--main-min-height);
+}
+
+header {
+    height: var(--header-height);
+    line-height: var(--header-height);
+}
+
+footer {
+    height: var(--footer-height);
+    line-height: var(--footer-height);
+}

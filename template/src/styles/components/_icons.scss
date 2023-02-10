@@ -1,0 +1,42 @@
+@use 'sass:list';
+
+%icon {
+    display: inline-block;
+    vertical-align: baseline;
+    background-repeat: no-repeat;
+    background-size: contain;
+    content: ''
+}
+
+@mixin icon-size ($size) {
+    width: var(--icon-width-#{$size});
+    height: var(--icon-height-#{$size});
+}
+
+@mixin icon-background ($bg) {
+    background-image: url(icons/bi-#{$bg}.svg)
+}
+
+@for $i from 1 through length($type-steps) {
+    $step: list.nth($type-steps, $i);
+    .bi.#{$step}::before, .text-#{$step} .bi::before {
+        @extend %icon;
+        @include icon-size(#{$step})
+    }
+}
+
+.bi::before {
+    @extend %icon;
+    @include icon-size("base")
+}
+
+.bi.clock::before  { @include icon-background("clock") }
+.bi.check::before  { @include icon-background("check") }
+.bi.image::before  { @include icon-background("image") }
+.bi.github::before { @include icon-background("github") }
+.bi.list::before   { @include icon-background("list") }
+.bi.x::before      { @include icon-background("x-lg") }
+.bi.file-earmark-check::before { @include icon-background("file-earmark-check") }
+.bi.one-two-three::before { @include icon-background("123") }
+.bi.alt::before { @include icon-background("alt") }
+.bi.arrows-fullscreen::before { @include icon-background("arrows-fullscreen") }

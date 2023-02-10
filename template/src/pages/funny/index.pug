@@ -1,0 +1,18 @@
+doctype
+html(lang="ru")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        link(rel="icon" type="image/svg+xml" href="/assets/images/logo.svg")
+        link(rel="stylesheet" type="text/css" href="/assets/index.css")
+        link(rel="stylesheet" type="text/css" href="/funny/bundle.css")
+        script(src="/funny/bundle.js" defer)
+        title Использование фреймворка    
+    body
+        include ../../components/header
+        main 
+            figure 
+                figcaption 
+                    | Powered by 
+                    a(href="https://svelte.dev/examples/clock" target="_blank") Svelte
+        include ../../components/footer

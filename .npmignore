@@ -1,0 +1,22 @@
+cheburgen.png
+
+# tests
+test
+coverage
+
+# build tools
+.travis.yml
+.jenkins.yml
+.codeclimate.yml
+
+# linters
+.jscsrc
+.jshintrc
+
+# editor settings
+.idea
+.editorconfig
+
+# me
+.github/
+jest.config.cjs
