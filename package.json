@@ -11,7 +11,8 @@
   "scripts": {
     "test": "jest",
     "build": "tsc",
-    "push": "git add . && read -p 'Введите комментарий к коммиту: ' COMMENT && git commit -am $COMMENT && npm publish --access public && git push origin template"
+    "git": "git add . && read -p 'Введите комментарий к коммиту: ' COMMENT && git commit -am $COMMENT",
+    "push": "npm run git && npm publish --access public && git push origin template"
   },
   "repository": {
     "type": "git",
@@ -32,12 +33,9 @@
     "@types/express": "^4.17.16",
     "@types/jest": "^29.4.0",
     "eslint": "^8.32.0",
-    "express": "^4.18.2",
     "husky": "^8.0.3",
     "lint-staged": "^13.1.0",
-    "nodemon": "^2.0.20",
     "prettier": "^2.8.3",
-    "tailwindcss": "^3.2.4",
     "ts-jest": "^29.0.5",
     "typescript": "^4.9.4"
   }
