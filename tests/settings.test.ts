@@ -1,10 +1,6 @@
 import { existsSync, lstatSync } from 'fs'
 import dotenv from 'dotenv'
-import settings from '../lib/settings'
-
-dotenv.config()
-
-const {
+import {
     srcDir,
     docsDir,
     libDir,
@@ -20,7 +16,9 @@ const {
     mimetypes,
     extensions,
     seo,
-} = settings
+} from '../lib/settings'
+
+dotenv.config()
 
 const {
     keywords,
@@ -68,6 +66,7 @@ test.each([
     stylesDir,
     iconsDir,
     assetsDir,
+    distDir
 ])('Directory %s should exist', (dir: string) => {
     expect(existsSync(dir) && lstatSync(dir).isDirectory()).toBeTruthy()
 })

@@ -26,24 +26,6 @@ function getPath(dir: string | undefined): string{
     return path.resolve(projectDir, typeof dir === 'string' ? dir : '')
 }
 
-const httpPort     = getHttpPort()
-const srcDir       = getPath(DIR_SRC)
-const distDir      = getPath(DIR_DIST)
-const publicDir    = getPath(DIR_PUBLIC)
-const libDir       = getPath(DIR_LIB)
-const typesDir     = getPath(DIR_TYPES)
-const stylesDir    = `${srcDir}/${DIR_STYLES}`
-const pagesDir     = `${srcDir}/${DIR_PAGES}`
-const settingsPath = `${srcDir}/${PATH_SETTINGS}`
-const docsDir      = `${pagesDir}/${DIR_DOCS}`
-const assetsDir    = `${distDir}/assets`
-const iconsDir     = `${projectDir}/node_modules/bootstrap-icons`
-const useReadme    = USE_README === '1' || USE_README === 'true' || USE_README === 'yes'
-
-const settings = prepareSettings(settingsPath)
-const mimetypes = prepareMimetypes()
-const extensions = Array.from(mimetypes.keys())
-
 function getStringFromSettings(key: string): string{
     const value = settings.get(key)
     if(typeof value !== 'string') throw `По ключу ${key} ожидалась строка.`
@@ -56,7 +38,29 @@ function getNumberFromSettings(key: string): number{
     return value
 }
 
-const seo: SeoProperties = {
+export const httpPort     = getHttpPort()
+export const srcDir       = getPath(DIR_SRC)
+export const distDir      = getPath(DIR_DIST)
+export const publicDir    = getPath(DIR_PUBLIC)
+export const libDir       = getPath(DIR_LIB)
+export const typesDir     = getPath(DIR_TYPES)
+export const stylesDir    = `${srcDir}/${DIR_STYLES}`
+export const pagesDir     = `${srcDir}/${DIR_PAGES}`
+export const docsDir      = `${pagesDir}/${DIR_DOCS}`
+export const assetsDir    = `${distDir}/assets`
+export const iconsDir     = `${projectDir}/node_modules/bootstrap-icons/icons`
+export const useReadme    = USE_README === '1' || USE_README === 'true' || USE_README === 'yes'
+
+export const libPrefix = DIR_LIB as string
+export const typesPrefix = DIR_TYPES as string
+
+export const mimetypes = prepareMimetypes()
+export const extensions = Array.from(mimetypes.keys())
+
+const settingsPath = `${srcDir}/${PATH_SETTINGS}`
+const settings = prepareSettings(settingsPath)
+
+export const seo: SeoProperties = {
     keywords: getStringFromSettings('keywords'),
     robots: getStringFromSettings('robots'),
     description: getStringFromSettings('description'),
@@ -72,6 +76,8 @@ const seo: SeoProperties = {
 }
 
 const output: RenderingSettings = {
+    libPrefix,
+    typesPrefix,
     useReadme,
     srcDir,
     libDir,

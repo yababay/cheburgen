@@ -30,6 +30,9 @@ export interface RenderingSettings {
     useReadme: boolean
     httpPort: number
 
+    libPrefix: string
+    typesPrefix: string
+
     mimetypes: Map<string, string>
     extensions: string[]
     seo: SeoProperties
