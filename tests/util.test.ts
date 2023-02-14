@@ -21,7 +21,7 @@ import {
 } from '../lib/settings'
 
 test('Path should start from slash', () => {
-    expect(() => existsAndIsFile('settings.json', srcDir)).toThrow(/slash/)
+    expect(() => existsAndIsFile('settings.json', srcDir)).toThrow(/слэш/)
 })
 
 test('Util functions should work', () => {
