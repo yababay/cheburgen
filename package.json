@@ -21,7 +21,12 @@
     "typescript": "^4.9.5"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "clean": "find ./lib/ ./types/ ./tests -name '*.js' -name '*.cjs' -delete && rm -rf ./lib/rollup/shared",
+    "checkout_rollup": "mv ./lib/rollup/index.ts ./lib/rollup/index.txt && git checkout rollup -- ./lib/rollup",
+    "stub_rollup": "mv ./lib/rollup/index.txt ./lib/rollup/index.ts",
+    "git": "npm run clean && read -p 'Комментарий к коммиту: ' COMMENT && git add . && git commit -am $COMMENT",
+    "build": "tsc && npm run checkout_rollup"
   },
   "keywords": [],
   "author": "",

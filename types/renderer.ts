@@ -1,10 +1,11 @@
-import { copyFileSync, mkdirSync, writeFileSync } from 'fs'
+import { copyFileSync, mkdirSync, writeFileSync, existsSync } from 'fs'
 import path from 'path'
 import { Request, Response, NextFunction} from 'express'
 import { ParsedQs } from 'qs'
 import { getAbsolutePath, getDistPath, getExt } from '../lib/util'
 import { Errorable } from './errors'
 import { mimetypes } from '../lib/settings'
+import rollupLoader from '../lib/rollup'
 
 export interface InternalExternalUrl {
     internal: string
@@ -77,7 +78,14 @@ export default abstract class Renderer {
         res.end(content)
     }
 
-    async rollup(){}
+    async rollup(){
+        const { input } = this
+        const dir = path.dirname(input)
+        let config = `${dir}/_rollup.config.js`
+        if(!existsSync(config)) config = `${dir}/_rollup.config.mjs`
+        if(!existsSync(config)) return 
+        await rollupLoader(config)       
+    }
 
     parseUrl(url: string): InternalExternalUrl{
         return {internal: url, external: url}
