@@ -1,41 +1,75 @@
 {
-  "name": "please-fulfill",
-  "version": "0.0.0",
-  "description": "Please fulfill",
-  "main": "index.ts",
+  "name": "cheburgen",
+  "version": "1.2.4",
+  "private": false,
+  "description": "Web server with server side generating support.",
+  "keywords": [
+    "ssg",
+    "web",
+    "server",
+    "express",
+    "pug",
+    "rollup",
+    "scss"
+  ],
+  "author": "Михаил Беляков (Michael Belyakov)",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yababay/cheburgen.git"
+  },
+  "main": "./lin/index.js",
+  "bin": {
+    "cheburgen": "./lin/index.js"
+  },
   "dependencies": {
-    "@jest/globals": "^29.4.2",
     "@rollup/plugin-node-resolve": "^15.0.1",
-    "@types/express": "^4.17.17",
-    "@types/jest": "^29.4.0",
-    "@types/pug": "^2.0.6",
-    "@types/qs": "^6.9.7",
-    "@types/shortid": "^0.0.29",
-    "@types/showdown": "^2.0.0",
     "bootstrap-icons": "^1.10.3",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "jest": "^29.4.2",
     "pug": "^3.0.2",
     "qs": "^6.11.0",
     "rollup": "^3.15.0",
     "rollup-plugin-css-only": "^4.3.0",
     "rollup-plugin-svelte": "^7.1.2",
     "sass": "^1.58.1",
+    "showdown": "^2.1.0",
+    "ws": "^8.12.1"
+  },
+  "devDependencies": {
     "shortid": "^2.2.16",
+    "@jest/globals": "^29.4.2",
+    "@types/express": "^4.17.17",
+    "@types/jest": "^29.4.0",
+    "@types/pug": "^2.0.6",
+    "@types/qs": "^6.9.7",
+    "@types/ws": "^8.5.4",
+    "@types/sass": "^1.43.1",
+    "@types/shortid": "^0.0.29",
+    "@types/showdown": "^2.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.49.0",
+    "@typescript-eslint/parser": "^5.49.0",
+    "jest": "^29.4.2",
+    "eslint": "^8.32.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.1.0",
+    "livereload": "^0.9.3",
+    "prettier": "^2.8.3",
+    "sass": "^1.57.1",
     "showdown": "^2.1.0",
     "ts-jest": "^29.0.5",
+    "ts-node": "^10.9.1",
     "typescript": "^4.9.5"
   },
   "scripts": {
     "test": "jest",
-    "clean": "find ./lib/ ./types/ ./tests -name '*.js' -name '*.cjs' -delete && rm -rf ./lib/rollup/shared",
+    "clean": "find ./lib/ ./types/ ./tests -name '*.js' -delete && rm -rf ./lib/rollup/shared",
     "checkout_rollup": "mv ./lib/rollup/index.ts ./lib/rollup/index.txt && git checkout rollup -- ./lib/rollup",
     "stub_rollup": "mv ./lib/rollup/index.txt ./lib/rollup/index.ts",
     "git": "npm run clean && read -p 'Комментарий к коммиту: ' COMMENT && git add . && git commit -am $COMMENT",
-    "build": "tsc && npm run checkout_rollup"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+    "build": "npm run clean && tsc && npm run checkout_rollup",
+    "dev": "npm run build && node ./lib/index.js",
+    "push": "npm run build && npm publish --access public && npm run clean && npm run stub_rollup && npm run git && git push origin main",
+    "pack": "npm --dry-run pack"
+  }
 }

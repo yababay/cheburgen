@@ -1,0 +1,32 @@
+.github/
+dist/
+public/
+src/
+tests/
+.env
+
+lib/*.ts
+lib/*/*.ts
+lib/*/*/*.ts
+types/*.ts
+tsconfig.json
+jest.config.js
+
+# tests
+test
+coverage
+
+# build tools
+.travis.yml
+.jenkins.yml
+.codeclimate.yml
+
+# linters
+.jscsrc
+.jshintrc
+
+# editor settings
+.idea
+.editorconfig
+
+

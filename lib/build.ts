@@ -2,9 +2,8 @@ import { readdirSync, lstatSync, copyFileSync, existsSync, mkdirSync, readFileSy
 import path from 'path'
 import { publicDir, distDir, stylesDir, pagesDir } from './settings'
 import shortid from 'shortid'
-//import { isRendereringLegal, getRenderer } from './renderer'
+import { isRendereringLegal, getRenderer } from './renderer'
 
-/*
 export default async function build() {
 
     makeClean()
@@ -24,16 +23,6 @@ export async function renderInternalUrls(){
         const renderer = getRenderer(url, context)
         renderer.write()
     })
-}
-
-function findDirectories(dir: string, dirs: string[] = []): string[] {
-    dirs.push(dir)
-    readdirSync(dir).forEach(item => {
-        item = path.resolve(dir, item)
-        if(lstatSync(item).isDirectory()) return findDirectories(item, dirs)
-    })
-    
-    return dirs.filter(dir => !dir.includes('do-not-remove-this'));
 }
 
 function findIconFiles(): string[]{
@@ -106,9 +95,18 @@ export function copyPublicFiles() {
         mkdirSync(dir, {recursive: true})
         copyFileSync(input, output)
     })
-}*/ 
+} 
 
 export function makeClean(){
     console.log('Removing previous build...')
     if(existsSync(distDir)) rmSync(distDir, {recursive: true})
+}
+
+function findDirectories(dir: string, dirs: string[] = []): string[] {
+    dirs.push(dir)
+    readdirSync(dir).forEach(item => {
+        item = path.resolve(dir, item)
+        if(lstatSync(item).isDirectory()) return findDirectories(item, dirs)
+    })
+    return dirs.filter(dir => !dir.includes('do-not-remove-this'));
 }
