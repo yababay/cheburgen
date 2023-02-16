@@ -1,10 +1,8 @@
-import Renderer, { InternalExternalUrl, Production } from '../../types/renderer'
-import { Errorable } from '../../types/errors'
-import { ParsedQs } from 'qs'
+import Renderer from '../../types/renderer'
 
 export default class RendererMime extends Renderer {
 
-    constructor(url: string, context: ParsedQs | Production | Errorable | null = null){
+    constructor(url: string){
         super(url)
     }
 
