@@ -22,12 +22,12 @@ class RenderingError extends Error implements Errorable {
 }
 
 
-export const ERROR_INTERNAL_RESOURCE_IS_NOT_FOUND = (url: string) => new RenderingError(`Не удалось найти внутренний ресурс ${url}.`)
+export const ERROR_INTERNAL_RESOURCE_IS_NOT_FOUND = (url: string) => new RenderingError(`Не удалось найти внутренний ресурс ${url}.`, 404)
+export const ERROR_TEMPLATE_NOT_FOUND          = (url: string) => new RenderingError(`Не удалось найти шаблон ${url}.`, 404)
+export const ERROR_MARKDOWN_NOT_FOUND          = (url: string) => new RenderingError(`Не удалось найти файл markdown ${url}.`, 404)
 
 /*export const ERROR_ILLEGAL_MIME_TYPE           = (url: string) => new RenderingError(`Ресурсы данного типа не обслуживаются: ${url}.`, 406)
-export const ERROR_TEMPLATE_NOT_FOUND          = (url: string) => new RenderingError(`Не удалось найти шаблон ${url}.`, 404)
 export const ERROR_STATIC_FILE_NOT_FOUND       = (url: string) => new RenderingError(`Не удалось найти файл ${url}.`, 404)
-export const ERROR_MARKDOWN_NOT_FOUND          = (url: string) => new RenderingError(`Не удалось найти файл markdown ${url}.`, 404)
 export const ERROR_NO_RENDERER_FOUND           = (url: string) => new RenderingError(`Не удалось найти обработчик для ресурса ${url}.`, 404)
 export const ERROR_CSS_IS_INCORRECT            = (url: string) => new RenderingError(`Ошибка при обработке стилевых таблиц: ${url}.`, 500)
 export const ERROR_NO_PRODUCTION_ID            = (url: string) => new RenderingError(`Не обнаружен ключ для генерации статических файлов: ${url}.`, 500)
