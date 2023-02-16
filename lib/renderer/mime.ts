@@ -1,3 +1,4 @@
+import { existsSync } from 'fs'
 import Renderer from '../../types/renderer'
 
 export default class RendererMime extends Renderer {
@@ -7,6 +8,6 @@ export default class RendererMime extends Renderer {
     }
 
     render(url: string) {
-        return true
+        return existsSync(this.input)
     }
 }

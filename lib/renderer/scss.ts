@@ -13,7 +13,7 @@ export default class RendererScss extends Renderer {
 
     render(url: string) {
         const { input, context } = this
-        const isProduction = typeof context === 'object' && Reflect.has(context as Production, 'buildId')
+        const isProduction = !!context && typeof context === 'object' && Reflect.has(context as Production, 'buildId')
         const options: object = isProduction ? {style: "compressed"} : {}
         return sass.compile(input, options).css
     }

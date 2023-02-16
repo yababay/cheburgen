@@ -2,15 +2,14 @@ import { Request, Response, NextFunction} from 'express'
 import { ParsedQs } from 'qs'
 import Renderer from '../../types/renderer'
 import RendererMime from './mime'
-//import RendererIcon from './icon'
-//import RendererScss from './scss'
-//import RendererPug  from './pug'
-//import RendererTdocs  from './tsdoc'
-//import { ERROR_NO_RENDERER_FOUND, ERROR_ILLEGAL_MIME_TYPE, Errorable } from '../../types/errors'
-import settings from '../settings'
+import RendererIcon from './icon'
+import RendererScss from './scss'
+import RendererPug  from './pug'
+import RendererReadme  from './readme'
+import { ERROR_NO_RENDERER_FOUND, ERROR_ILLEGAL_MIME_TYPE, Errorable } from '../../types/errors'
+import { useReadme, extensions } from '../settings'
 import { getExt as getLocalExt, existsAndIsPagesFile, existsAndIsPagesDirectory } from '../util'
 
-const { extensions } = settings
 
 interface Production {
     shortid: string
@@ -21,26 +20,11 @@ interface UrlAndQuery {
     query: ParsedQs | Production
 }
 
-//const renderers = prepareRenderersMap()
-
-export function isRendereringLegal(url: string){
-    const ext = getLocalExt(url)
-    return extensions.includes(ext) || renderers.has(ext)
-}
-/*
-export function getNetworkExt(url: string){
-    if(renderers.has(getLocalExt(url))) throw ERROR_ILLEGAL_MIME_TYPE(url)
-    const ext = Array.from(renderers.keys()).find(key => existsAndIsPagesFile(`${url}.${key}`))
-    return ext
-}
-
-function getRendererForNetwork(url: string, context: ParsedQs | Production | Errorable | null){
-    return getRenderer(url, context, false)
-}
+const renderers = prepareRenderersMap()
 
 export function getRenderer(url: string, context: ParsedQs | Production | Errorable | null, local = true): Renderer {
     const fromNetwork = !local
-    if(url.includes('/docs/')) return new RendererTdocs(url)
+    if(url === '/' && useReadme) return new RendererReadme()
     if(RendererIcon.isIcon(url)) return new RendererIcon(url)
     if(RendererScss.isStyle(url)) return new RendererScss(url)
     if(fromNetwork && existsAndIsPagesDirectory(url)) return getRendererForNetwork(`${url.replace(/\/$/, '')}/index`, context)
@@ -78,4 +62,19 @@ function prepareUrlAndContext(req: Request): UrlAndQuery{
     const qsi = url.indexOf('?')
     if(qsi > -1) url = url.substring(0, qsi)
     return { url, query }
-}*/
+}
+
+export function getNetworkExt(url: string){
+    if(renderers.has(getLocalExt(url))) throw ERROR_ILLEGAL_MIME_TYPE(url)
+    const ext = Array.from(renderers.keys()).find(key => existsAndIsPagesFile(`${url}.${key}`))
+    return ext
+}
+
+function getRendererForNetwork(url: string, context: ParsedQs | Production | Errorable | null){
+    return getRenderer(url, context, false)
+}
+
+export function isRendereringLegal(url: string){
+    const ext = getLocalExt(url)
+    return extensions.includes(ext) || renderers.has(ext)
+}
