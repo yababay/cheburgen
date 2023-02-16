@@ -62,14 +62,14 @@
     "typescript": "^4.9.5"
   },
   "scripts": {
-    "test": "jest",
-    "clean": "find ./lib/ ./types/ ./tests -name '*.js' -delete && rm -rf ./lib/rollup && git checkout rollup -- lib/rollup/stub.ts && git mv lib/rollup/stub.ts lib/rollup/index.ts",
-    "checkout_rollup": "mv ./lib/rollup/index.ts ./lib/rollup/index.txt && git checkout rollup -- ./lib/rollup",
-    "stub_rollup": "mv ./lib/rollup/index.txt ./lib/rollup/index.ts",
-    "git": "npm run clean && read -p 'Комментарий к коммиту: ' COMMENT && git add . && git commit -am $COMMENT",
-    "build": "npm run clean && tsc && npm run checkout_rollup",
-    "dev": "npm run build && node ./lib/index.js",
-    "push": "npm run build && npm publish --access public && npm run clean && npm run stub_rollup && npm run git && git push origin main",
-    "pack": "npm --dry-run pack"
+    "test":   "jest",
+    "clean":  "find ./lib/ ./types/ ./tests -name '*.js' -delete && rm -rf ./lib/rollup && git checkout rollup -- lib/rollup/stub.ts && git mv lib/rollup/stub.ts lib/rollup/index.ts",
+    "rollup": "git checkout rollup -- ./lib/rollup",
+    "git":    "npm run clean && read -p 'Комментарий к коммиту: ' COMMENT && git add . && git commit -am $COMMENT",
+    "build":  "npm run clean && tsc && npm run rollup",
+    "dev":    "npm run build && node ./lib/index.js",
+    "push":   "npm run build && npm publish --access public && npm run clean && npm run git && git push origin main",
+    "pack":   "npm --dry-run pack",
+    "dist":   "npm run build && NODE_ENV=production node ./index.js"
   }
 }
