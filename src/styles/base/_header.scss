@@ -1,0 +1,110 @@
+$brand-font-size-ratio: 1.1;
+$brand-logo-width-ratio: 1.4;
+$brand-logo-height-ratio: 1.2;
+
+%header-same-height {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    display: inline-block;
+    line-height: var(--header-height);
+    height: var(--header-height);
+}
+
+header {
+    --brand-font-size: calc(var(--font-size-base) * #{$brand-font-size-ratio});
+    --brand-margin: var(--brand-font-size);
+    --links-margin: calc(var(--brand-font-size) * .5);
+    --item-margin: var(--font-size-base);
+    position: relative;
+
+    #brand, #burger {
+        @extend %header-same-height;
+    }
+
+    #brand::before, #burger::after {
+        @extend %icon;
+        vertical-align: middle;
+    }
+
+    #brand {
+        margin-left: var(--brand-margin);
+        font-size: var(--brand-font-size);
+        &::before {
+            background-image: url(images/logo.svg);
+            height: calc(var(--brand-font-size) * #{$brand-logo-height-ratio});
+            width: calc(var(--brand-font-size) * #{$brand-logo-width-ratio});
+        }
+        a {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            &:visited {
+                color: #{$basic-black};
+            }
+        }
+    }
+
+    #burger, #links {
+        margin-right: var(--brand-margin);
+        position: absolute;
+        right: 0;
+    }
+
+    #burger {
+        cursor: pointer;
+        &::after {
+            @include icon-size("lg");
+            @include icon-background("list");
+        }
+    }
+
+    #links {
+        width: 10rem;
+        display: none;
+        top: 0;
+        right: 0;
+        margin: .5rem;
+        padding: .5rem;
+        border: 1px solid grey;
+        background-color: white;
+        opacity: .9;
+        border-radius: .5rem;
+        .link {
+            font-size: var(--font-size-base);
+            line-height: var(--lihe-height-base);
+            &:first-child {
+                position: absolute;
+                right: 0;
+                top: 0;
+                margin-right: .3rem;
+                text-align: right;
+            }
+        }
+    }
+
+    @media screen and (max-width: #{$burger-breakpoint}){ 
+        #burger {display: inline-block;}
+        #links {display: none;}
+    }
+
+    @media screen and (min-width: calc(#{$burger-breakpoint} + 1px)){ 
+        #burger {display: none;}
+        #links {
+            min-width: 50%;
+            text-align: right;
+            display: inline-block;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            margin-right: var(--links-margin);
+            .link {
+                margin-left: var(--item-margin);
+                display: inline-block;
+                &:first-child {
+                    display: none;
+                }
+            }
+        }
+    }
+}

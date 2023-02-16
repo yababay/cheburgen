@@ -1,0 +1,11 @@
+p {
+    @include text-size("base")
+}
+
+a {
+    text-decoration: none;
+}
+
+a:visited {
+    color: gray
+}

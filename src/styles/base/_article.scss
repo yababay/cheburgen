@@ -1,0 +1,60 @@
+article {
+    max-width: 80ch;
+    margin: 1rem auto;
+    padding: 1rem;
+    border: 1px silver solid;
+    border-radius: .4rem; 
+
+    h1, h2, h3, h4, h5, h6 {
+        text-align: center;
+    }
+
+    h1 {
+        margin-top: calc(var(--line-height-xxl) * .5);
+        margin-bottom: calc(var(--line-height-xxl) * .5);
+        font-size: var(--font-size-xxl);
+        line-height: var(--line-height-xxl);
+    }
+
+    h2 {
+        margin-top: calc(var(--line-height-xl) * .5);
+        margin-bottom: calc(var(--line-height-xl) * .5);
+        font-size: var(--font-size-xl);
+        line-height: var(--line-height-xl);
+    }
+
+    h3 {
+        margin-top: calc(var(--line-height-lg) * .5);
+        margin-bottom: calc(var(--line-height-lg) * .5);
+        font-size: var(--font-size-lg);
+        line-height: var(--line-height-lg);
+        text-transform: capitalize;
+    }
+
+    h4 {
+        margin-top: calc(var(--line-height-lg) * .5);
+        margin-bottom: calc(var(--line-height-lg) * .5);
+        font-size: var(--font-size-lg);
+        line-height: var(--line-height-lg);
+    }
+
+    h5 {
+        margin-top: calc(var(--line-height-base) * .5);
+        margin-bottom: calc(var(--line-height-base) * .5);
+        font-size: var(--font-size-base);
+        line-height: var(--line-height-base);
+        text-transform: uppercase;
+    }
+
+    h6 {
+        margin-top: calc(var(--line-height-base) * .5);
+        margin-bottom: calc(var(--line-height-base) * .5);
+        font-size: var(--font-size-base);
+        line-height: var(--line-height-base);
+        font-family: 'Istok Web Bold';
+    }
+
+    @media screen and (max-width: calc(80ch + 4rem)) {
+        border: 0;
+    }
+}

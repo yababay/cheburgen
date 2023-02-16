@@ -45,6 +45,10 @@ export default abstract class Renderer {
         return this.#content
     }
 
+    get context(): ParsedQs | Production | Errorable | null {
+        return this.#context
+    }
+
     get input(): string{
         const { urls } = this
         const { internal } = urls

@@ -1,0 +1,16 @@
+html {
+    font-family: Istok Web, sans-serif;
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+    color: #{$basic-black};
+
+    @media screen and (max-width: var(--mobile-breakpoint)) {
+        font-size: var(--font-size-sm);
+        line-height: var(--line-height-sm);
+    }
+    
+    @media screen and (min-width: calc(var(--large-breakpoint) + 1px)) {
+        font-size: var(--font-size-md);
+        line-height: var(--line-height-md);
+    }
+}
