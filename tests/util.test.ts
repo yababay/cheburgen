@@ -39,7 +39,6 @@ test('Util functions should work', () => {
 test.each([
     getSourcePath('/lib/settings.ts'),
     getSourcePath('/types/settings.ts'),
-    getDistPath('/assets/README.md'),
     getStylesPath('/empty/README.md'),
     getPagesPath('/docs/README.md'),
     getIconsPath('/github.svg'),

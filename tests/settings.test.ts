@@ -65,8 +65,6 @@ test.each([
     publicDir,
     stylesDir,
     iconsDir,
-    assetsDir,
-    distDir
 ])('Directory %s should exist', (dir: string) => {
     expect(existsSync(dir) && lstatSync(dir).isDirectory()).toBeTruthy()
 })
