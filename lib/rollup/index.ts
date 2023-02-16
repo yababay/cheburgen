@@ -1,3 +1,4 @@
-export default async function(path: string): Promise<void> {
-    throw 'This is just a stub. For real code please checkout the rollup branch.'
+export default async function(config: string){
+    throw 'This is just a stub.'
 }
+  
