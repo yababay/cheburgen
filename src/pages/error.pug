@@ -1,0 +1,11 @@
+- var title = `Ошибка ${status || 404}`
+
+doctype
+html(lang="ru")
+    include ../components/head
+    body
+        include ../components/header
+        main
+            include ../components/figure
+            +figure('error')
+        include ../components/footer
