@@ -63,13 +63,13 @@
   },
   "scripts": {
     "test":   "jest",
-    "clean":  "find ./lib/ ./types/ ./tests -name '*.js' -delete && rm -rf ./lib/rollup && git checkout rollup -- lib/rollup/stub.ts && git mv lib/rollup/stub.ts lib/rollup/index.ts",
+    "clean":  "find ./lib/ ./types/ ./tests -name '*.js' -delete && rm -rf ./lib/rollup && git checkout rollup -- lib/rollup/stub.ts && git mv lib/rollup/stub.ts lib/rollup/index.ts && rm -rf ./src/pages/funny/bundle.*",
     "rollup": "git checkout rollup -- ./lib/rollup",
     "git":    "npm run clean && read -p 'Комментарий к коммиту: ' COMMENT && git add . && git commit -am $COMMENT",
     "build":  "npm run clean && tsc && npm run rollup",
     "dev":    "npm run build && node ./lib/index.js",
     "push":   "npm run build && npm publish --access public && npm run clean && npm run git && git push origin main",
     "pack":   "npm --dry-run pack",
-    "dist":   "npm run build && NODE_ENV=production node ./index.js"
+    "dist":   "npm run build && NODE_ENV=production node ./lib/index.js"
   }
 }
