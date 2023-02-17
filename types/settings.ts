@@ -16,6 +16,7 @@ export interface SeoProperties {
 
 export interface RenderingSettings {
 
+    isDebug: boolean
     srcDir: string
     docsDir: string
     libDir: string

@@ -26,7 +26,7 @@ export function getRenderer(url: string, context: ParsedQs | Production | Errora
     const fromNetwork = !local
     if(url === '/' && useReadme) return new RendererReadme()
     if(RendererIcon.isIcon(url)) return new RendererIcon(url)
-    if(RendererScss.isStyle(url)) return new RendererScss(url)
+    if(RendererScss.isStyle(url)) return Reflect.construct(RendererScss, [url, context])
     if(fromNetwork && existsAndIsPagesDirectory(url)) return getRendererForNetwork(`${url.replace(/\/$/, '')}/index`, context)
     const ext = fromNetwork ? getNetworkExt(url) : getLocalExt(url)
     if(ext && renderers.has(ext)) {

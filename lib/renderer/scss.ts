@@ -21,6 +21,15 @@ export default class RendererScss extends Renderer {
     parseUrl(url: string): InternalExternalUrl {
         return {internal: url.replace(assetsPrefix, '').replace(/\.css$/, '.scss'), external: url}
     }
+    
+    get output() {
+        const out = super.output
+        const { context } = this
+        if(context === null) return out
+        const { buildId } = this.context as Production
+        if(!buildId) return out
+        return out.replace(/\.css$/, `-${buildId}.css`)
+    }
 
     static isStyle(url: string){
         return url.startsWith(assetsPrefix) && url.endsWith('.css')

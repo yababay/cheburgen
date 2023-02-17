@@ -4,7 +4,7 @@ import { Request, Response, NextFunction} from 'express'
 import { ParsedQs } from 'qs'
 import { getAbsolutePath, getDistPath, getExt } from '../lib/util'
 import { Errorable } from './errors'
-import { mimetypes } from '../lib/settings'
+import { mimetypes, libDir, isDebug } from '../lib/settings'
 import rollupLoader from '../lib/rollup/index'
 
 export interface InternalExternalUrl {
@@ -83,6 +83,7 @@ export default abstract class Renderer {
     }
 
     async rollup(){
+        if(isDebug && !existsSync(`${libDir}/rollup/loadConfigFile.cjs`)) return
         const { input } = this
         const dir = path.dirname(input)
         let config = `${dir}/_rollup.config.js`

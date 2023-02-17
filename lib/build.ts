@@ -18,7 +18,9 @@ export async function renderInternalUrls(){
     const context = { buildId }
     console.log(`Gathering page files. Build ID = ${buildId}.`)
     await Promise.all(findPageFiles().map(url => getRenderer(url, context).rollup()))
-    ;[...findPageFiles().filter(file => !file.includes('rollup-config')), ...findStyleFiles(), ...findIconFiles()]
+    ;[...findPageFiles(), ...findStyleFiles(), ...findIconFiles()]
+    .filter(file => !file.includes('rollup-config'))
+    .filter(file => !file.includes('README.md'))
     .forEach(url => {
         const renderer = getRenderer(url, context)
         renderer.write()
