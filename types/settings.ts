@@ -29,6 +29,7 @@ export interface RenderingSettings {
     assetsDir: string
 
     useReadme: boolean
+    useRollup: boolean
     httpPort: number
 
     libPrefix: string

@@ -20,6 +20,7 @@ const {
     PATH_SETTINGS,
     USE_README,
     HTTP_PORT,
+    USE_ROLLUP,
     DEBUG
 } = process.env
 
@@ -51,6 +52,7 @@ export const docsDir      = `${pagesDir}/${DIR_DOCS}`
 export const assetsDir    = `${distDir}/assets`
 export const iconsDir     = `${projectDir}/node_modules/bootstrap-icons/icons`
 export const useReadme    = USE_README === '1' || USE_README === 'true' || USE_README === 'yes'
+export const useRollup    = USE_ROLLUP === '1' || USE_ROLLUP === 'true' || USE_ROLLUP === 'yes'
 export const isDebug      = DEBUG === '1' || DEBUG === 'true' || DEBUG === 'yes'
 
 export const libPrefix = DIR_LIB as string
@@ -78,6 +80,7 @@ export const seo: SeoProperties = {
 }
 
 const output: RenderingSettings = {
+    useRollup,
     isDebug,
     libPrefix,
     typesPrefix,
