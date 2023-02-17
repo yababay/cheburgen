@@ -1,6 +1,6 @@
 {
   "name": "cheburgen",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "private": false,
   "description": "Web server with server side generating support.",
   "keywords": [

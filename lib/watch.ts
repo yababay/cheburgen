@@ -3,9 +3,7 @@ import {Server as HttpServer } from 'http'
 import WebSocket from "ws"
 
 import { findForWatcher } from './build'
-import settings from './settings'
-
-const { srcDir, publicDir } = settings
+import { srcDir, publicDir, isDebug } from './settings'
 
 export default (expressServer: HttpServer) => {
   const websocketServer = new WebSocket.Server({
@@ -22,7 +20,7 @@ export default (expressServer: HttpServer) => {
   function wsSignal(message: string){
     websocketServer.clients.forEach(function each(client) {
       if (client.readyState === WebSocket.OPEN) {
-        console.log(message)
+        if(isDebug) console.debug(message)
         client.send(message);
       }
     });

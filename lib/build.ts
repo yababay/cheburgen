@@ -1,6 +1,6 @@
-import { readdirSync, lstatSync, copyFileSync, existsSync, mkdirSync, readFileSync, rmSync } from 'fs'
+import { readdirSync, lstatSync, copyFileSync, existsSync, mkdirSync, readFileSync, rmSync, renameSync } from 'fs'
 import path from 'path'
-import { publicDir, distDir, stylesDir, pagesDir } from './settings'
+import { publicDir, distDir, stylesDir, pagesDir, useReadme } from './settings'
 import shortid from 'shortid'
 import { isRendereringLegal, getRenderer } from './renderer'
 
@@ -9,7 +9,10 @@ export default async function build() {
     makeClean()
     copyPublicFiles()
     await renderInternalUrls()
-
+    if(useReadme) {
+        rmSync(`${distDir}/index.html`)
+        renameSync(`${distDir}/README.html`, `${distDir}/index.html`)
+    }
     console.log('Done.')
 }
 
