@@ -35,7 +35,7 @@
   "dependencies": {
     "@rollup/plugin-commonjs": "^24.0.1",
     "@rollup/plugin-node-resolve": "^15.0.1",
-    "cheburgen": "^1.2.7",
+    "cheburgen": "^1.2.8",
     "rollup": "^3.14.0",
     "rollup-plugin-css-only": "^4.3.0",
     "rollup-plugin-svelte": "^7.1.2",
