@@ -1,6 +1,6 @@
 import { readdirSync, lstatSync, copyFileSync, existsSync, mkdirSync, readFileSync, rmSync, renameSync } from 'fs'
 import path from 'path'
-import { publicDir, distDir, stylesDir, pagesDir, useReadme } from './settings'
+import { publicDir, distDir, stylesDir, pagesDir, useReadme, srcDir } from './settings'
 import shortid from 'shortid'
 import { isRendereringLegal, getRenderer } from './renderer'
 
@@ -50,7 +50,12 @@ function findIconFiles(): string[]{
 }
 
 export function findForWatcher(){
-    return [...findPageFiles(true), ...findStyleFiles(true), ...findPublicFiles()]
+    return [
+        ...findPageFiles(true), 
+        ...findStyleFiles(true), 
+        ...findPublicFiles(), 
+        `${srcDir}/../README.md`
+    ]
 }
 
 function findStyleFiles(forWatcher = false): string[]{
