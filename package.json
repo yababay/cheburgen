@@ -70,6 +70,7 @@
     "dev": "npm run build && node ./lib/index.js",
     "push": "npm run build && npm publish --access public && npm run clean && npm run git && git push origin main",
     "pack": "npm --dry-run pack",
-    "dist": "npm run build && NODE_ENV=production node ./lib/index.js"
+    "dist": "npm run build && NODE_ENV=production node ./lib/index.js",
+    "docs": "rm -rf docs && git checkout documentation -- docs && git checkout documentation -- README.md && git add . && git commit -am docs && git push origin main"
   }
 }
