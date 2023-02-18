@@ -1,4 +1,8 @@
-![Логотип проекта](cheburlogo.png?123)
+<div style="position: absolute; top: 1rem; right: 1rem">
+	<a href="https://yababay.github.io/cheburgen/">Образец сгенерированного сайта</a>
+</div>
+
+![Логотип проекта](cheburlogo.png)
 
 # Cheburgen: SSR/SSG сервер
 
