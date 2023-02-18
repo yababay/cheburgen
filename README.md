@@ -1,4 +1,4 @@
-<div style="position: absolute; top: 1rem; right: 1rem">
+<div style="display: none">
 	<a href="https://yababay.github.io/cheburgen/">Образец сгенерированного сайта</a>
 </div>
 
