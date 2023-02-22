@@ -30,6 +30,7 @@ export interface RenderingSettings {
 
     useReadme: boolean
     useRollup: boolean
+    linkRoot: string
     httpPort: number
 
     libPrefix: string

@@ -21,6 +21,7 @@ const {
     USE_README,
     HTTP_PORT,
     USE_ROLLUP,
+    LINK_ROOT,
     DEBUG
 } = process.env
 
@@ -40,20 +41,25 @@ function getNumberFromSettings(key: string): number{
     return value
 }
 
-export const httpPort     = getHttpPort()
-export const srcDir       = getPath(DIR_SRC)
-export const distDir      = getPath(DIR_DIST)
-export const publicDir    = getPath(DIR_PUBLIC)
-export const libDir       = getPath(DIR_LIB)
-export const typesDir     = getPath(DIR_TYPES)
-export const stylesDir    = `${srcDir}/${DIR_STYLES}`
-export const pagesDir     = `${srcDir}/${DIR_PAGES}`
-export const docsDir      = `${pagesDir}/${DIR_DOCS}`
-export const assetsDir    = `${distDir}/assets`
-export const iconsDir     = `${projectDir}/node_modules/bootstrap-icons/icons`
-export const useReadme    = USE_README === '1' || USE_README === 'true' || USE_README === 'yes'
-export const useRollup    = USE_ROLLUP === '1' || USE_ROLLUP === 'true' || USE_ROLLUP === 'yes'
-export const isDebug      = DEBUG === '1' || DEBUG === 'true' || DEBUG === 'yes'
+function asBoolian(value: string | undefined){
+    return value === '1' || value === 'true' || value === 'yes'
+}
+
+export const linkRoot  = !LINK_ROOT || LINK_ROOT === '/' ? '' : LINK_ROOT
+export const httpPort  = getHttpPort()
+export const srcDir    = getPath(DIR_SRC)
+export const distDir   = getPath(`${DIR_DIST}${linkRoot.startsWith('/') ? linkRoot : '/' + linkRoot}`)
+export const publicDir = getPath(DIR_PUBLIC)
+export const libDir    = getPath(DIR_LIB)
+export const typesDir  = getPath(DIR_TYPES)
+export const useReadme = asBoolian(USE_README)
+export const useRollup = asBoolian(USE_ROLLUP)
+export const isDebug   = asBoolian(DEBUG)
+export const stylesDir = `${srcDir}/${DIR_STYLES}`
+export const pagesDir  = `${srcDir}/${DIR_PAGES}`
+export const docsDir   = `${pagesDir}/${DIR_DOCS}`
+export const assetsDir = `${distDir}/assets`
+export const iconsDir  = `${projectDir}/node_modules/bootstrap-icons/icons`
 
 export const libPrefix = DIR_LIB as string
 export const typesPrefix = DIR_TYPES as string
@@ -80,6 +86,7 @@ export const seo: SeoProperties = {
 }
 
 const output: RenderingSettings = {
+    linkRoot,
     useRollup,
     isDebug,
     libPrefix,

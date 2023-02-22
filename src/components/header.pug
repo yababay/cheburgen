@@ -1,16 +1,16 @@
 header
     #brand
-        a(href="/") #{motto || title}
+        a(href=fromRoot()) #{motto || title}
     #burger
     #links 
         .link 
             a.bi.x(href="#" title="Закрыть") 
         .link 
-            a.bi.file-earmark-check(href="/eula") EULA
+            a.bi.file-earmark-check(href=fromRoot("/eula")) EULA
         .link 
-            a.bi.image(href="/icons") Иконки
+            a.bi.image(href=fromRoot("/icons")) Иконки
         .link 
-            a.bi.clock(href="/funny") Часы
+            a.bi.clock(href=fromRoot("/funny")) Часы
         .link 
-            a.bi.github(href="https://github.com/yababay/vite-vanilla-tailwind-svg") Github
+            a.bi.github(href="https://github.com/yababay/vite-vanilla-tailwind-svg" target="_blank") Github
     include ../components/burger

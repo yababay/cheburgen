@@ -5,7 +5,7 @@ import Renderer, { Production } from '../../types/renderer'
 import { Errorable } from '../../types/errors'
 import settings from '../settings'
 
-const { seo } = settings
+const { seo, linkRoot } = settings
 
 export default abstract class RendererWithLocals extends Renderer {
 
@@ -21,6 +21,6 @@ export default abstract class RendererWithLocals extends Renderer {
         if(existsSync(locsPath)){
             locs = JSON.parse(readFileSync(locsPath, 'utf8'))    
         }
-        return {...seo, ...context, ...locs}
+        return {...seo, ...context, ...locs, linkRoot}
     }
 }

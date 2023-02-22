@@ -1,7 +1,6 @@
 import svelte from 'rollup-plugin-svelte';
 import resolve from '@rollup/plugin-node-resolve';
 import css from 'rollup-plugin-css-only';
-//import commonjs from '@rollup/plugin-commonjs'
 
 export default {
   input: 'src/pages/funny/_index.js',
