@@ -4,7 +4,7 @@
 
 ![Логотип проекта](cheburlogo.png)
 
-# Cheburgen: SSR/SSG сервер
+# Cheburgen: SSR/SSG сервер (v-1.3.2)
 
 
 ## Обзор современных веб-технологий
