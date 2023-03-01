@@ -1,6 +1,8 @@
 @import
+    '../../node_modules/sanitize.css/sanitize',
+    '../../node_modules/sanitize.css/forms',
+    '../../node_modules/sanitize.css/assets',
+    '../../node_modules/sanitize.css/reduce-motion',
     'settings/index',
-    'components/index',
-    'base/index',
-    'styles',
-    'figure';
+    'parts/index',
+    'styles';
